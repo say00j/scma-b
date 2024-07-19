@@ -15,7 +15,6 @@ app.use(cors(corsOptions)); // Middleware to enable CORS (Cross-Origin Resource 
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   console.error(err.stack);
   res.status(500).send("Internal Server Error");
 });
