@@ -5,7 +5,13 @@ const collection = require("../config"); // Importing database models and config
 
 const app = express(); // Creating an Express application
 app.use(express.json()); // Middleware to parse JSON requests
-app.use(cors()); // Middleware to enable CORS (Cross-Origin Resource Sharing)
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // Middleware to enable CORS (Cross-Origin Resource Sharing)
 
 // Error handling middleware
 app.use((err, req, res, next) => {
