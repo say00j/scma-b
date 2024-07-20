@@ -1,24 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const collection = require("../config"); // Importing database models and configuration
+const collection = require("./config"); // Importing database models and configuration
 
 const app = express(); // Creating an Express application
 app.use(express.json()); // Middleware to parse JSON requests
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions)); // Middleware to enable CORS (Cross-Origin Resource Sharing)
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+  })
+);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Internal Server Error");
 });
-/*
+
 //User Login endpoint
 app.post("/Userlogin", async (req, res) => {
   try {
@@ -196,7 +195,6 @@ app.put("/complaints/:id", async (req, res) => {
     return res.status(500).send("Internal server error"); // Return error for any server-side error
   }
 });
-*/
 const port = process.env.PORT || 5000; // Set port for server
 app.listen(port, () => {
   console.log("Server running on port:", port); // Start server and log port number
